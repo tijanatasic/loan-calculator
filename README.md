@@ -1,1 +1,1 @@
-# loan-calculator
+# Loan calculator app which calculates installment plans based on the amount, annual interest percentage, and number of months
