@@ -1,0 +1,9 @@
+databaseChangeLog:
+  - changeSet:
+      id: create_db_tables
+      author: tijana
+      changes:
+        - sqlFile:
+            path: db/scripts/create_db_tables.sql
+
+

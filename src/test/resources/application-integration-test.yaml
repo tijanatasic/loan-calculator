@@ -1,0 +1,21 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/leanpay_integration_test_db
+    username: postgres
+    password: root
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+    format-sql: true
+    enable-native-query: true
+  liquibase:
+    enabled: true
+
+logging:
+  level:
+    root: INFO
