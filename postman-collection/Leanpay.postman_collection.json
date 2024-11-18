@@ -1,0 +1,38 @@
+{
+	"info": {
+		"_postman_id": "aca99122-ec78-4be8-8e06-13ce28651b7f",
+		"name": "Leanpay",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Calculate loan",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"amount\": 20000,\r\n    \"annualInterestPercentage\": 5,\r\n    \"numberOfMonths\": 12\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/loan-calculator/calculate",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"loan-calculator",
+						"calculate"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
