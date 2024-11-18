@@ -1,4 +1,4 @@
-package com.calculator.app.constants;
+package com.calculator.app.unit.tests.constants;
 
 public class TestConstants {
 

@@ -1,9 +1,10 @@
-package com.calculator.app.mapper;
+package com.calculator.app.unit.tests.mapper;
 
 import com.calculator.app.dto.response.LoanCalculationByMonthDto;
 import com.calculator.app.dto.response.LoanCalculationResponseDto;
 import com.calculator.app.entity.LoanCalculationResultEntity;
 import com.calculator.app.entity.LoanCalculationTotalResultEntity;
+import com.calculator.app.mapper.LoanCalculationResponseMapperImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

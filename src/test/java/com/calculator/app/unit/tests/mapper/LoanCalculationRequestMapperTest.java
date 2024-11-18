@@ -1,7 +1,8 @@
-package com.calculator.app.mapper;
+package com.calculator.app.unit.tests.mapper;
 
 import com.calculator.app.dto.request.LoanCalculationRequestDto;
 import com.calculator.app.entity.LoanCalculationRequestEntity;
+import com.calculator.app.mapper.LoanCalculationRequestMapperImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

@@ -1,5 +1,6 @@
-package com.calculator.app.controller;
+package com.calculator.app.unit.tests.controller;
 
+import com.calculator.app.controller.LoanCalculatorController;
 import com.calculator.app.dto.request.LoanCalculationRequestDto;
 import com.calculator.app.dto.response.LoanCalculationByMonthDto;
 import com.calculator.app.dto.response.LoanCalculationResponseDto;

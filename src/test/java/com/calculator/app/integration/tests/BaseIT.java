@@ -1,4 +1,4 @@
-package com.calculator.app.integration;
+package com.calculator.app.integration.tests;
 
 import io.restassured.RestAssured;
 import org.junit.jupiter.api.BeforeAll;

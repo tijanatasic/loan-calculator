@@ -1,4 +1,4 @@
-package com.calculator.app.integration;
+package com.calculator.app.integration.tests;
 
 import com.calculator.app.dto.request.LoanCalculationRequestDto;
 import com.calculator.app.dto.response.LoanCalculationByMonthDto;
@@ -17,7 +17,7 @@ import java.math.RoundingMode;
 import java.util.List;
 import java.util.Map;
 
-import static com.calculator.app.constants.TestConstants.*;
+import static com.calculator.app.unit.tests.constants.TestConstants.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -109,6 +109,76 @@ public class LoanCalculatorIT extends BaseIT {
                 BigDecimal.valueOf(0.42).setScale(2, RoundingMode.HALF_UP),
                 BigDecimal.valueOf(0.00).setScale(2, RoundingMode.HALF_UP));
 
+    }
+
+    @Test
+    void calculateLoan_annualInterestRareSuccess() {
+        //given
+        BigDecimal amount = BigDecimal.valueOf(1000);
+        BigDecimal annualInterestRate = BigDecimal.ZERO;
+        Integer numberOfMonths = 2;
+
+        //when
+        LoanCalculationRequestDto loanCalculationRequestDto = generateLoanCalculationRequestDto(amount, numberOfMonths, annualInterestRate);
+        Response response = postCalculateRequest(loanCalculationRequestDto);
+
+        //then
+        assertEquals(HttpStatus.OK.value(), response.getStatusCode());
+
+        LoanCalculationResponseDto loanCalculationResponseDto = response.body().as(LoanCalculationResponseDto.class);
+
+        assertEquals(BigDecimal.valueOf(1000).setScale(2, RoundingMode.HALF_UP), loanCalculationResponseDto.getTotalPaymentAmount());
+        assertEquals(BigDecimal.valueOf(0).setScale(2, RoundingMode.HALF_UP), loanCalculationResponseDto.getTotalInterestAmount());
+        assertEquals(2, loanCalculationResponseDto.getCalculationByMonth().size());
+
+        List<LoanCalculationByMonthDto> loanCalculationByMonthDtos = loanCalculationResponseDto.getCalculationByMonth();
+
+        assertMonthValues(loanCalculationByMonthDtos.get(0), 1,
+                BigDecimal.valueOf(500).setScale(2, RoundingMode.HALF_UP),
+                BigDecimal.valueOf(500).setScale(2, RoundingMode.HALF_UP),
+                BigDecimal.ZERO.setScale(2, RoundingMode.HALF_UP),
+                BigDecimal.valueOf(500).setScale(2, RoundingMode.HALF_UP));
+
+        assertMonthValues(loanCalculationByMonthDtos.get(1), 2,
+                BigDecimal.valueOf(500).setScale(2, RoundingMode.HALF_UP),
+                BigDecimal.valueOf(500).setScale(2, RoundingMode.HALF_UP),
+                BigDecimal.ZERO.setScale(2, RoundingMode.HALF_UP),
+                BigDecimal.ZERO.setScale(2, RoundingMode.HALF_UP));
+    }
+
+    @Test
+    void calculateLoan_loanAmountAndAnnualInterestRareSuccess() {
+        //given
+        BigDecimal amount = BigDecimal.ZERO;
+        BigDecimal annualInterestRate = BigDecimal.ZERO;
+        Integer numberOfMonths = 2;
+
+        //when
+        LoanCalculationRequestDto loanCalculationRequestDto = generateLoanCalculationRequestDto(amount, numberOfMonths, annualInterestRate);
+        Response response = postCalculateRequest(loanCalculationRequestDto);
+
+        //then
+        assertEquals(HttpStatus.OK.value(), response.getStatusCode());
+
+        LoanCalculationResponseDto loanCalculationResponseDto = response.body().as(LoanCalculationResponseDto.class);
+
+        assertEquals(BigDecimal.ZERO.setScale(2, RoundingMode.HALF_UP), loanCalculationResponseDto.getTotalPaymentAmount());
+        assertEquals(BigDecimal.ZERO.setScale(2, RoundingMode.HALF_UP), loanCalculationResponseDto.getTotalInterestAmount());
+        assertEquals(2, loanCalculationResponseDto.getCalculationByMonth().size());
+
+        List<LoanCalculationByMonthDto> loanCalculationByMonthDtos = loanCalculationResponseDto.getCalculationByMonth();
+
+        assertMonthValues(loanCalculationByMonthDtos.get(0), 1,
+                BigDecimal.ZERO.setScale(2, RoundingMode.HALF_UP),
+                BigDecimal.ZERO.setScale(2, RoundingMode.HALF_UP),
+                BigDecimal.ZERO.setScale(2, RoundingMode.HALF_UP),
+                BigDecimal.ZERO.setScale(2, RoundingMode.HALF_UP));
+
+        assertMonthValues(loanCalculationByMonthDtos.get(1), 2,
+                BigDecimal.ZERO.setScale(2, RoundingMode.HALF_UP),
+                BigDecimal.ZERO.setScale(2, RoundingMode.HALF_UP),
+                BigDecimal.ZERO.setScale(2, RoundingMode.HALF_UP),
+                BigDecimal.ZERO.setScale(2, RoundingMode.HALF_UP));
     }
 
     @Test
