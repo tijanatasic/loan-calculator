@@ -43,6 +43,6 @@ public class LoanCalculationTotalResultEntity {
 
     @OneToMany(mappedBy = "loanCalculationTotalResult", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @ToString.Exclude
-    private List<LoanCalculationResultEntity> loanCalculationResults = new ArrayList<>();
+    private List<LoanCalculationSingleResultEntity> loanCalculationResults = new ArrayList<>();
 
 }

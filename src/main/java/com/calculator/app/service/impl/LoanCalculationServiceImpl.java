@@ -3,7 +3,7 @@ package com.calculator.app.service.impl;
 import com.calculator.app.dto.request.LoanCalculationRequestDto;
 import com.calculator.app.dto.response.LoanCalculationResponseDto;
 import com.calculator.app.entity.LoanCalculationRequestEntity;
-import com.calculator.app.entity.LoanCalculationResultEntity;
+import com.calculator.app.entity.LoanCalculationSingleResultEntity;
 import com.calculator.app.entity.LoanCalculationTotalResultEntity;
 import com.calculator.app.mapper.LoanCalculationRequestMapper;
 import com.calculator.app.mapper.LoanCalculationResponseMapper;
@@ -71,7 +71,7 @@ public class LoanCalculationServiceImpl implements LoanCalculationService {
 
             log.debug("Calculated payment: month - {}, interest payment loanAmount - {}, principal payment loanAmount - {}, balance owned - {}, current month payment - {}", currentMonth, interestPaymentAmount, principalPaymentAmount, balanceOwed, currentMonthPaymentAmount);
 
-            LoanCalculationResultEntity loanCalculationResult = generateLoanCalculationResultEntity(currentMonth, interestPaymentAmount, principalPaymentAmount, balanceOwed, currentMonthPaymentAmount, loanCalculationTotalResult);
+            LoanCalculationSingleResultEntity loanCalculationResult = generateLoanCalculationResultEntity(currentMonth, interestPaymentAmount, principalPaymentAmount, balanceOwed, currentMonthPaymentAmount, loanCalculationTotalResult);
             loanCalculationTotalResult.getLoanCalculationResults().add(loanCalculationResult);
             currentMonth++;
             totalPaymentAmount = totalPaymentAmount.add(currentMonthPaymentAmount);
@@ -111,8 +111,8 @@ public class LoanCalculationServiceImpl implements LoanCalculationService {
                         .subtract(BigDecimal.ONE)), 2, RoundingMode.HALF_UP);
     }
 
-    private LoanCalculationResultEntity generateLoanCalculationResultEntity(int currentMonth, BigDecimal interestPayment, BigDecimal principalPayment, BigDecimal remainingBalance, BigDecimal monthlyPayment, LoanCalculationTotalResultEntity loanCalculationTotalResult) {
-        LoanCalculationResultEntity loanCalculationResult = new LoanCalculationResultEntity();
+    private LoanCalculationSingleResultEntity generateLoanCalculationResultEntity(int currentMonth, BigDecimal interestPayment, BigDecimal principalPayment, BigDecimal remainingBalance, BigDecimal monthlyPayment, LoanCalculationTotalResultEntity loanCalculationTotalResult) {
+        LoanCalculationSingleResultEntity loanCalculationResult = new LoanCalculationSingleResultEntity();
         loanCalculationResult.setBalanceOwed(remainingBalance);
         loanCalculationResult.setInterestAmount(interestPayment);
         loanCalculationResult.setMonthValue(currentMonth);

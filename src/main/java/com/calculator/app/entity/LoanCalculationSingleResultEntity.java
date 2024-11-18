@@ -8,15 +8,15 @@ import lombok.NoArgsConstructor;
 import java.math.BigDecimal;
 
 @Entity
-@Table(name = "loan_calculation_result")
+@Table(name = "loan_calculation_single_result")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class LoanCalculationResultEntity {
+public class LoanCalculationSingleResultEntity {
 
     @Id
-    @SequenceGenerator(name = "loan_calculation_result_id_seq", sequenceName = "loan_calculation_result_id_seq", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "loan_calculation_result_id_seq")
+    @SequenceGenerator(name = "loan_calculation_single_result_id_seq", sequenceName = "loan_calculation_single_result_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "loan_calculation_single_result_id_seq")
     @Column(name = "id")
     private Long id;
 

@@ -2,7 +2,7 @@ package com.calculator.app.unit.tests.mapper;
 
 import com.calculator.app.dto.response.LoanCalculationByMonthDto;
 import com.calculator.app.dto.response.LoanCalculationResponseDto;
-import com.calculator.app.entity.LoanCalculationResultEntity;
+import com.calculator.app.entity.LoanCalculationSingleResultEntity;
 import com.calculator.app.entity.LoanCalculationTotalResultEntity;
 import com.calculator.app.mapper.LoanCalculationResponseMapperImpl;
 import org.junit.jupiter.api.Test;
@@ -25,7 +25,7 @@ public class LoanCalculationResponseMapperTest {
     @Test
     public void testMapLoanCalculationTotalResultEntityToDto_validData() {
         //given
-        LoanCalculationResultEntity result1 = new LoanCalculationResultEntity();
+        LoanCalculationSingleResultEntity result1 = new LoanCalculationSingleResultEntity();
         result1.setMonthValue(1);
         result1.setPaymentAmount(BigDecimal.valueOf(102.31));
         result1.setPrincipalAmount(BigDecimal.valueOf(98.14));

@@ -4,7 +4,7 @@ import com.calculator.app.dto.request.LoanCalculationRequestDto;
 import com.calculator.app.dto.response.LoanCalculationByMonthDto;
 import com.calculator.app.dto.response.LoanCalculationResponseDto;
 import com.calculator.app.entity.LoanCalculationRequestEntity;
-import com.calculator.app.entity.LoanCalculationResultEntity;
+import com.calculator.app.entity.LoanCalculationSingleResultEntity;
 import com.calculator.app.entity.LoanCalculationTotalResultEntity;
 import com.calculator.app.mapper.LoanCalculationRequestMapper;
 import com.calculator.app.mapper.LoanCalculationResponseMapper;
@@ -55,17 +55,17 @@ public class LoanCalculationServiceTest {
         Integer numberOfMonths = 10;
 
         LoanCalculationTotalResultEntity loanCalculationTotalResult = new LoanCalculationTotalResultEntity();
-        List<LoanCalculationResultEntity> loanCalculationResultEntities = new ArrayList<>();
-        loanCalculationResultEntities.add(new LoanCalculationResultEntity(1L, 1, BigDecimal.valueOf(102.31), BigDecimal.valueOf(98.14), BigDecimal.valueOf(4.17), BigDecimal.valueOf(901.86), loanCalculationTotalResult));
-        loanCalculationResultEntities.add(new LoanCalculationResultEntity(2L, 2, BigDecimal.valueOf(102.31), BigDecimal.valueOf(98.55), BigDecimal.valueOf(3.76), BigDecimal.valueOf(803.31), loanCalculationTotalResult));
-        loanCalculationResultEntities.add(new LoanCalculationResultEntity(3L, 3, BigDecimal.valueOf(102.31), BigDecimal.valueOf(98.96), BigDecimal.valueOf(3.35), BigDecimal.valueOf(704.35), loanCalculationTotalResult));
-        loanCalculationResultEntities.add(new LoanCalculationResultEntity(4L, 4, BigDecimal.valueOf(102.31), BigDecimal.valueOf(99.38), BigDecimal.valueOf(2.93), BigDecimal.valueOf(604.97), loanCalculationTotalResult));
-        loanCalculationResultEntities.add(new LoanCalculationResultEntity(5L, 5, BigDecimal.valueOf(102.31), BigDecimal.valueOf(99.79), BigDecimal.valueOf(2.52), BigDecimal.valueOf(505.18), loanCalculationTotalResult));
-        loanCalculationResultEntities.add(new LoanCalculationResultEntity(6L, 6, BigDecimal.valueOf(102.31), BigDecimal.valueOf(100.21), BigDecimal.valueOf(2.10), BigDecimal.valueOf(404.97), loanCalculationTotalResult));
-        loanCalculationResultEntities.add(new LoanCalculationResultEntity(7L, 7, BigDecimal.valueOf(102.31), BigDecimal.valueOf(100.62), BigDecimal.valueOf(1.69), BigDecimal.valueOf(304.35), loanCalculationTotalResult));
-        loanCalculationResultEntities.add(new LoanCalculationResultEntity(8L, 8, BigDecimal.valueOf(102.31), BigDecimal.valueOf(101.04), BigDecimal.valueOf(1.27), BigDecimal.valueOf(203.31), loanCalculationTotalResult));
-        loanCalculationResultEntities.add(new LoanCalculationResultEntity(9L, 9, BigDecimal.valueOf(102.31), BigDecimal.valueOf(101.46), BigDecimal.valueOf(0.85), BigDecimal.valueOf(101.85), loanCalculationTotalResult));
-        loanCalculationResultEntities.add(new LoanCalculationResultEntity(10L, 10, BigDecimal.valueOf(102.27), BigDecimal.valueOf(101.85), BigDecimal.valueOf(0.42), BigDecimal.valueOf(0.00), loanCalculationTotalResult));
+        List<LoanCalculationSingleResultEntity> loanCalculationResultEntities = new ArrayList<>();
+        loanCalculationResultEntities.add(new LoanCalculationSingleResultEntity(1L, 1, BigDecimal.valueOf(102.31), BigDecimal.valueOf(98.14), BigDecimal.valueOf(4.17), BigDecimal.valueOf(901.86), loanCalculationTotalResult));
+        loanCalculationResultEntities.add(new LoanCalculationSingleResultEntity(2L, 2, BigDecimal.valueOf(102.31), BigDecimal.valueOf(98.55), BigDecimal.valueOf(3.76), BigDecimal.valueOf(803.31), loanCalculationTotalResult));
+        loanCalculationResultEntities.add(new LoanCalculationSingleResultEntity(3L, 3, BigDecimal.valueOf(102.31), BigDecimal.valueOf(98.96), BigDecimal.valueOf(3.35), BigDecimal.valueOf(704.35), loanCalculationTotalResult));
+        loanCalculationResultEntities.add(new LoanCalculationSingleResultEntity(4L, 4, BigDecimal.valueOf(102.31), BigDecimal.valueOf(99.38), BigDecimal.valueOf(2.93), BigDecimal.valueOf(604.97), loanCalculationTotalResult));
+        loanCalculationResultEntities.add(new LoanCalculationSingleResultEntity(5L, 5, BigDecimal.valueOf(102.31), BigDecimal.valueOf(99.79), BigDecimal.valueOf(2.52), BigDecimal.valueOf(505.18), loanCalculationTotalResult));
+        loanCalculationResultEntities.add(new LoanCalculationSingleResultEntity(6L, 6, BigDecimal.valueOf(102.31), BigDecimal.valueOf(100.21), BigDecimal.valueOf(2.10), BigDecimal.valueOf(404.97), loanCalculationTotalResult));
+        loanCalculationResultEntities.add(new LoanCalculationSingleResultEntity(7L, 7, BigDecimal.valueOf(102.31), BigDecimal.valueOf(100.62), BigDecimal.valueOf(1.69), BigDecimal.valueOf(304.35), loanCalculationTotalResult));
+        loanCalculationResultEntities.add(new LoanCalculationSingleResultEntity(8L, 8, BigDecimal.valueOf(102.31), BigDecimal.valueOf(101.04), BigDecimal.valueOf(1.27), BigDecimal.valueOf(203.31), loanCalculationTotalResult));
+        loanCalculationResultEntities.add(new LoanCalculationSingleResultEntity(9L, 9, BigDecimal.valueOf(102.31), BigDecimal.valueOf(101.46), BigDecimal.valueOf(0.85), BigDecimal.valueOf(101.85), loanCalculationTotalResult));
+        loanCalculationResultEntities.add(new LoanCalculationSingleResultEntity(10L, 10, BigDecimal.valueOf(102.27), BigDecimal.valueOf(101.85), BigDecimal.valueOf(0.42), BigDecimal.valueOf(0.00), loanCalculationTotalResult));
 
 
         LoanCalculationRequestDto loanCalculationRequestDto = generateLoanCalculationRequestDto(amount, numberOfMonths, interestRate);
@@ -146,9 +146,9 @@ public class LoanCalculationServiceTest {
         Integer numberOfMonths = 2;
 
         LoanCalculationTotalResultEntity loanCalculationTotalResult = new LoanCalculationTotalResultEntity();
-        List<LoanCalculationResultEntity> loanCalculationResultEntities = new ArrayList<>();
-        loanCalculationResultEntities.add(new LoanCalculationResultEntity(1L, 1, BigDecimal.ZERO.setScale(2, RoundingMode.HALF_UP), BigDecimal.ZERO.setScale(2, RoundingMode.HALF_UP), BigDecimal.ZERO.setScale(2, RoundingMode.HALF_UP), BigDecimal.ZERO.setScale(2, RoundingMode.HALF_UP), loanCalculationTotalResult));
-        loanCalculationResultEntities.add(new LoanCalculationResultEntity(2L, 2, BigDecimal.ZERO.setScale(2, RoundingMode.HALF_UP), BigDecimal.ZERO.setScale(2, RoundingMode.HALF_UP), BigDecimal.ZERO.setScale(2, RoundingMode.HALF_UP), BigDecimal.ZERO.setScale(2, RoundingMode.HALF_UP), loanCalculationTotalResult));
+        List<LoanCalculationSingleResultEntity> loanCalculationResultEntities = new ArrayList<>();
+        loanCalculationResultEntities.add(new LoanCalculationSingleResultEntity(1L, 1, BigDecimal.ZERO.setScale(2, RoundingMode.HALF_UP), BigDecimal.ZERO.setScale(2, RoundingMode.HALF_UP), BigDecimal.ZERO.setScale(2, RoundingMode.HALF_UP), BigDecimal.ZERO.setScale(2, RoundingMode.HALF_UP), loanCalculationTotalResult));
+        loanCalculationResultEntities.add(new LoanCalculationSingleResultEntity(2L, 2, BigDecimal.ZERO.setScale(2, RoundingMode.HALF_UP), BigDecimal.ZERO.setScale(2, RoundingMode.HALF_UP), BigDecimal.ZERO.setScale(2, RoundingMode.HALF_UP), BigDecimal.ZERO.setScale(2, RoundingMode.HALF_UP), loanCalculationTotalResult));
 
         LoanCalculationRequestDto loanCalculationRequestDto = generateLoanCalculationRequestDto(amount, numberOfMonths, interestRate);
         LoanCalculationRequestEntity loanCalculationRequestEntityMapped = getLoanRequestEntityMapped(amount, numberOfMonths, interestRate);
@@ -219,9 +219,9 @@ public class LoanCalculationServiceTest {
         Integer numberOfMonths = 2;
 
         LoanCalculationTotalResultEntity loanCalculationTotalResult = new LoanCalculationTotalResultEntity();
-        List<LoanCalculationResultEntity> loanCalculationResultEntities = new ArrayList<>();
-        loanCalculationResultEntities.add(new LoanCalculationResultEntity(1L, 1, BigDecimal.valueOf(500).setScale(2, RoundingMode.HALF_UP), BigDecimal.valueOf(500).setScale(2, RoundingMode.HALF_UP), BigDecimal.ZERO.setScale(2, RoundingMode.HALF_UP), BigDecimal.valueOf(500).setScale(2, RoundingMode.HALF_UP), loanCalculationTotalResult));
-        loanCalculationResultEntities.add(new LoanCalculationResultEntity(2L, 2, BigDecimal.valueOf(500).setScale(2, RoundingMode.HALF_UP), BigDecimal.valueOf(500).setScale(2, RoundingMode.HALF_UP), BigDecimal.ZERO.setScale(2, RoundingMode.HALF_UP), BigDecimal.ZERO.setScale(2, RoundingMode.HALF_UP), loanCalculationTotalResult));
+        List<LoanCalculationSingleResultEntity> loanCalculationResultEntities = new ArrayList<>();
+        loanCalculationResultEntities.add(new LoanCalculationSingleResultEntity(1L, 1, BigDecimal.valueOf(500).setScale(2, RoundingMode.HALF_UP), BigDecimal.valueOf(500).setScale(2, RoundingMode.HALF_UP), BigDecimal.ZERO.setScale(2, RoundingMode.HALF_UP), BigDecimal.valueOf(500).setScale(2, RoundingMode.HALF_UP), loanCalculationTotalResult));
+        loanCalculationResultEntities.add(new LoanCalculationSingleResultEntity(2L, 2, BigDecimal.valueOf(500).setScale(2, RoundingMode.HALF_UP), BigDecimal.valueOf(500).setScale(2, RoundingMode.HALF_UP), BigDecimal.ZERO.setScale(2, RoundingMode.HALF_UP), BigDecimal.ZERO.setScale(2, RoundingMode.HALF_UP), loanCalculationTotalResult));
 
         LoanCalculationRequestDto loanCalculationRequestDto = generateLoanCalculationRequestDto(amount, numberOfMonths, interestRate);
         LoanCalculationRequestEntity loanCalculationRequestEntityMapped = getLoanRequestEntityMapped(amount, numberOfMonths, interestRate);
@@ -309,7 +309,7 @@ public class LoanCalculationServiceTest {
         return loanCalculationRequestDto;
     }
 
-    private LoanCalculationTotalResultEntity generateLoanCalculationTotalResultEntity(List<LoanCalculationResultEntity> loanCalculationResultEntities, BigDecimal totalPaymentAmount, BigDecimal totalInterestAmount, LoanCalculationTotalResultEntity loanCalculationTotalResult) {
+    private LoanCalculationTotalResultEntity generateLoanCalculationTotalResultEntity(List<LoanCalculationSingleResultEntity> loanCalculationResultEntities, BigDecimal totalPaymentAmount, BigDecimal totalInterestAmount, LoanCalculationTotalResultEntity loanCalculationTotalResult) {
         loanCalculationTotalResult.setLoanCalculationResults(loanCalculationResultEntities);
         loanCalculationTotalResult.setTotalPaymentAmount(totalPaymentAmount);
         loanCalculationTotalResult.setTotalInterestAmount(totalInterestAmount);

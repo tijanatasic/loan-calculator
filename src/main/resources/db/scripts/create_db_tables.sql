@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS loan_calculation_total_result (
     FOREIGN KEY (loan_calculation_request_id) REFERENCES loan_calculation_request (id)
 );
 
-CREATE TABLE IF NOT EXISTS loan_calculation_result (
+CREATE TABLE IF NOT EXISTS loan_calculation_single_result (
     id BIGSERIAL PRIMARY KEY,
     month_value INT NOT NULL,
     payment_amount NUMERIC(10,2) NOT NULL,
