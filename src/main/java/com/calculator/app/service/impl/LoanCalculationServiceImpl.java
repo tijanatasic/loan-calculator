@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
@@ -87,7 +88,7 @@ public class LoanCalculationServiceImpl implements LoanCalculationService {
     }
 
     private BigDecimal calculateMonthlyInterestedRate(BigDecimal annualInterestPercentage) {
-        return annualInterestPercentage
+        return Objects.equals(annualInterestPercentage, BigDecimal.ZERO) ? BigDecimal.ZERO : annualInterestPercentage
                 .divide(BigDecimal.valueOf(100), 10, RoundingMode.HALF_UP)
                 .divide(BigDecimal.valueOf(12), 10, RoundingMode.HALF_UP);
     }
@@ -100,6 +101,9 @@ public class LoanCalculationServiceImpl implements LoanCalculationService {
     }
 
     private BigDecimal calculateMonthlyPayment(BigDecimal loanAmount, BigDecimal monthlyInterestRate, Integer numberOfMonths) {
+        if (Objects.equals(monthlyInterestRate, BigDecimal.ZERO)) {
+            return loanAmount.divide(BigDecimal.valueOf(numberOfMonths), 2, RoundingMode.HALF_UP);
+        }
         return loanAmount
                 .multiply(monthlyInterestRate)
                 .multiply(monthlyInterestRate.add(BigDecimal.ONE).pow(numberOfMonths))
